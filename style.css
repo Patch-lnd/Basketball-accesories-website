@@ -1,10 +1,11 @@
 *{
     margin: 0;
     padding: 0;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Roboto sanserif';
 }
 body{
     height: 100%;
+    background: #fff;
 }
 .navbar{
     padding: 20px 5%;
@@ -41,29 +42,30 @@ body{
 }
 .nav .menu li .a:hover{
     background-image: url(img/Bg_banner.jpg);
-    background-size: cover;
+    background-size: contain;
     background-repeat: no-repeat;
     padding: 0 5%;
     display: flex;
     justify-content: center;
     align-items: flex-start;
     flex-direction: column;
-    color: #424144;
+    background-color: #FFF;
     height: 100vh;
 }
 .content {
     width: 100vw;
-    min-height: 400px;
+    height: 70vh;
+    min-height: unset;
     background-image: url('images/Bg_banner.png');
-    background-size: contain;
     background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     color: white;
-    padding: 60px 0 60px 0;
-    background-repeat: no-repeat;
+    padding: 0;
 }
 .content h1 {
     font-size: 40px;
@@ -71,9 +73,10 @@ body{
 }
 .content p {
     font-size: 20px;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
-.content button {
+.content button{
+    margin-top: 30px;
     padding: 15px 30px;
     border: none;
     background-color: #ff3d00;
@@ -81,4 +84,64 @@ body{
     border-radius: 5px;
     cursor: pointer;
     font-size: 18px;
+}
+.products{
+    text-align: center;
+    font-size: 30px;
+    font-weight: 300;
+    margin-top: 30px;
+}
+.section_products{
+    padding: 40px 5%;
+}
+.products{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+.products .cart{
+    width: 310px;
+    background: #ebe4e4;
+    bottom: 0 10px 20px rgba(247, 244, 244, 0.863);
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+.products .cart img{
+    height: 250px;
+    width: 100%;
+}
+.products .carte .Hoop{
+    padding: 5px 20px;
+    opacity: 0.8;
+}
+.products .cart .title{
+    font-weight: 100;
+    font-size: 40px;
+    color: #424144;
+    padding: 0 20px;
+}
+.products .cart .box{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+.products .cart .price{
+    color: #f63ef6;
+    font-size: 20px;
+    font-weight: bold;
+}
+.products .cart .order{
+    font-size: 16px;
+    font-weight: 1000;
+    color: #000;
+    padding: 10px 48px;
+    border-radius: 5px;
+    background-color: #e9b960;
+    border-color: #e9b960;
+}
+.products .cart .box .order:hover{
+    cursor: pointer;
+    background: palegreen;
+    color: white;
+    border-color: palegreen;
 }
