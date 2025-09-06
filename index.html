@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <title>E-Shop</title>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="logo"><h1>E-shop</h1></div>
+      <ul class="menu">
+        <li><a href="#" class="active">Home</a></li>
+        <li><a href="#">New</a></li>
+        <li><a href="#">Solde</a></li>
+      <li><a href="#"><i class="fas fa-shopping-cart"></i></a></li>
+
+      </ul>
+    </nav>
+    <section class="content">
+      <h1>New</h1>
+      <p>Our new catalogue with the best basketball equipments of the moment</p>
+      <button>DISCOVER</button>
+    </section>
+
+    <h1 class="products_text">Our Best Sellers</h1>
+    <section class="products_section">
+     
+    </section>
+
+    <foooter>
+      <p>copyrights<a href="#">E-shop</a></p>
+    </foooter>
+</body>
+<!-- ...existing code... -->
+<div class="products"></div>
+<!-- ...existing code... -->
+
+<!-- ...existing code... -->
+<script>
+const images = [
+  "a.png", "b.png", "c.png", "d.png", "e.png",
+  "f.png", "g.png", "h.png", "i.png", "j.png",
+  "k.png", "l.png", "m.png", "n.png", "o.png",
+  "p.png", "q.png", "r.png", "s.png", "u.png",
+  "v.png", "w.png", "x.png", "y.png", "z.png",
+  "aa.png", "ab.png", "ac.png", "ad.png", "ab2.png"
+];
+
+const prices = [
+  70, 150, 400, 20, 30,
+  30, 15, 85, 30, 20,
+  70, 60, 100, 90, 100,
+  70, 85, 100, 80, 100,
+  50, 500, 20, 500, 100,
+  30, 530, 80, 20, 100
+];
+
+// Ajoute un tableau de noms
+const names = [
+  "Elite Ball", "Complete pack", "Complete Jersey", "Jersey", "children Jersey",
+  "For hands", "Ball", "Children Jersey", "Knee cap", "Jersey",
+  "Jersey", "Jersey", "Ball", "complete jersey", "Diamond ball",
+  "for hands", "Plastic Hoop", "glass hoop", "Ankle healer", "Al-court ball",
+  "For legs", "Moderateble Glass Hoop", "For legs", "Sreet glass hoop", "Ball",
+  "Back ball", "Pro Backball", "Glass Hoop", "Key styler", "ball"
+];
+
+const products = document.querySelector('.products');
+for(let i=0; i<30; i++) {
+  const imgSrc = "images/" + images[i];
+  const price = prices[i] ? prices[i] : 1000;
+  const name = names[i] ? names[i] : "Product";
+  products.innerHTML += `
+    <div class="cart">
+      <div class="img"><img src="${imgSrc}" onerror="this.src='images/a.png'"></div>
+      <div class="desc">${name}</div>
+      <div class="title">Hoop</div>
+      <div class="box">
+        <div class="price">$${price}</div>
+        <button class="order">Order</button>
+      </div>
+    </div>
+  `;
+}
+</script>
+<!-- ...existing code... -->
+</html>
