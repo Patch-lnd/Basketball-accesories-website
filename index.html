@@ -1,91 +1,230 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>E-Shop</title>
+  <style>
+    body { margin:0; font-family: Arial, sans-serif; background:#f5f5f5; }
+    .navbar { background:brown; padding:15px 5%; display:flex; justify-content:space-between; align-items:center; position:sticky; top:0; z-index:100; }
+    .navbar h1 { color:white; }
+    .navbar ul { list-style:none; display:flex; gap:20px; margin:0; padding:0; }
+    .navbar a { color:white; text-decoration:none; font-weight:bold; }
+    .content { height:60vh; background:#222 url('images/Bg_banner.png') center/cover no-repeat; display:flex; flex-direction:column; justify-content:center; align-items:center; color:white; text-align:center; }
+    .content button { margin-top:20px; padding:12px 25px; background:#e9b960; border:none; border-radius:5px; font-weight:bold; cursor:pointer; }
+    .products_section { padding:50px 5%; }
+    .products_section h2 { margin-bottom:20px; }
+    .products { display:grid; grid-template-columns:repeat(auto-fill, minmax(220px,1fr)); gap:20px; }
+    .cart { background:white; border-radius:10px; box-shadow:0 5px 15px rgba(0,0,0,0.1); overflow:hidden; }
+    .cart img { width:100%; height:200px; object-fit:cover; }
+    .cart .desc { padding:10px; font-weight:bold; }
+    .cart .box { display:flex; justify-content:space-between; align-items:center; padding:10px; }
+    .price { color:green; font-weight:bold; }
+    .order { background:#e9b960; border:none; padding:8px 15px; border-radius:5px; cursor:pointer; font-weight:bold; }
+    .order:hover { background:green; color:white; }
+    footer { text-align:center; padding:20px; background:#ddd; margin-top:30px; }
+    #cartModal { position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); display:none; justify-content:center; align-items:center; }
+    #cartContent { background:white; padding:20px; border-radius:10px; width:80%; max-width:600px; }
+    #closeCart { float:right; cursor:pointer; }
+    #notif { position:fixed; bottom:20px; right:20px; background:green; color:white; padding:12px 20px; border-radius:5px; opacity:0; transition:opacity 0.5s; z-index:200; }
+    /* Animation panier clignotant */
+    @keyframes blink {
+      0%, 100% { color:white; }
+      50% { color:yellow; }
+    }
+    .blink-cart {
+      animation: blink 0.5s ease-in-out 3;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <h1>E-Shop</h1>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#new" id="linkNew">New</a></li>
+      <li><a href="#solde">Solde</a></li>
+      <li><a href="#" id="openCart"><span id="cartIcon">🛒</span> Cart</a></li>
+    </ul>
+  </nav>
 
-    <title>E-Shop</title>
-  </head>
-  <body>
-    <nav class="navbar">
-      <div class="logo"><h1>E-shop</h1></div>
-      <ul class="menu">
-        <li><a href="#" class="active">Home</a></li>
-        <li><a href="#">New</a></li>
-        <li><a href="#">Solde</a></li>
-      <li><a href="#"><i class="fas fa-shopping-cart"></i></a></li>
+  <section class="content" id="home">
+    <h1>Welcome to E-Shop</h1>
+    <p>Best basketball equipments of the moment</p>
+    <button id="discoverBtn">DISCOVER</button>
+  </section>
 
-      </ul>
-    </nav>
-    <section class="content">
-      <h1>New</h1>
-      <p>Our new catalogue with the best basketball equipments of the moment</p>
-      <button>DISCOVER</button>
-    </section>
+  <section class="products_section" id="best">
+    <h2>Best Sellers</h2>
+    <div class="products" id="bestProducts"></div>
+  </section>
 
-    <h1 class="products_text">Our Best Sellers</h1>
-    <section class="products_section">
-     
-    </section>
+  <section class="products_section" id="new">
+    <h2>New Arrivals</h2>
+    <div class="products" id="newProducts"></div>
+  </section>
 
-    <foooter>
-      <p>copyrights<a href="#">E-shop</a></p>
-    </foooter>
-</body>
-<!-- ...existing code... -->
-<div class="products"></div>
-<!-- ...existing code... -->
+  <section class="products_section" id="solde">
+    <h2>Solde</h2>
+    <div class="products" id="soldeProducts"></div>
+  </section>
 
-<!-- ...existing code... -->
-<script>
-const images = [
-  "a.png", "b.png", "c.png", "d.png", "e.png",
-  "f.png", "g.png", "h.png", "i.png", "j.png",
-  "k.png", "l.png", "m.png", "n.png", "o.png",
-  "p.png", "q.png", "r.png", "s.png", "u.png",
-  "v.png", "w.png", "x.png", "y.png", "z.png",
-  "aa.png", "ab.png", "ac.png", "ad.png", "ab2.png"
-];
-
-const prices = [
-  70, 150, 400, 20, 30,
-  30, 15, 85, 30, 20,
-  70, 60, 100, 90, 100,
-  70, 85, 100, 80, 100,
-  50, 500, 20, 500, 100,
-  30, 530, 80, 20, 100
-];
-
-// Ajoute un tableau de noms
-const names = [
-  "Elite Ball", "Complete pack", "Complete Jersey", "Jersey", "children Jersey",
-  "For hands", "Ball", "Children Jersey", "Knee cap", "Jersey",
-  "Jersey", "Jersey", "Ball", "complete jersey", "Diamond ball",
-  "for hands", "Plastic Hoop", "glass hoop", "Ankle healer", "Al-court ball",
-  "For legs", "Moderateble Glass Hoop", "For legs", "Sreet glass hoop", "Ball",
-  "Back ball", "Pro Backball", "Glass Hoop", "Key styler", "ball"
-];
-
-const products = document.querySelector('.products');
-for(let i=0; i<30; i++) {
-  const imgSrc = "images/" + images[i];
-  const price = prices[i] ? prices[i] : 1000;
-  const name = names[i] ? names[i] : "Product";
-  products.innerHTML += `
-    <div class="cart">
-      <div class="img"><img src="${imgSrc}" onerror="this.src='images/a.png'"></div>
-      <div class="desc">${name}</div>
-      <div class="title">Hoop</div>
-      <div class="box">
-        <div class="price">$${price}</div>
-        <button class="order">Order</button>
-      </div>
+  <div id="cartModal">
+    <div id="cartContent">
+      <span id="closeCart">❌</span>
+      <h2>Your Cart</h2>
+      <ul id="cartItems"></ul>
+      <p><strong>Total: $<span id="cartTotal">0</span></strong></p>
+      <p><strong>Your Balance: $<span id="userBalance">1500</span></strong></p>
     </div>
-  `;
-}
-</script>
-<!-- ...existing code... -->
+  </div>
+
+  <div id="notif"></div>
+
+  <footer>
+    <p>© <a href="#">E-Shop</a> 2025</p>
+  </footer>
+
+  <script>
+    const images = [
+      "a.png","b.png","c.png","d.png","e.png","f.png","g.png","h.png","i.png","j.png",
+      "k.png","l.png","m.png","n.png","o.png","p.png","q.png","r.png","s.png","u.png",
+      "v.png","w.png","x.png","y.png","z.png","aa.png","ab.png","ac.png","ad.png","ab2.png"
+    ];
+    const prices = [
+      70,500,400,20,30,30,15,85,30,20,
+      70,60,100,90,100,70,85,100,80,100,
+      50,500,20,500,100,30,530,80,20,100
+    ];
+    const names = [
+      "Elite Ball","Complete pack","Complete Jersey","Jersey","Children Jersey",
+      "For hands","Ball","Children Jersey","Knee cap","Jersey",
+      "Jersey","Jersey","Ball","Complete Jersey","Diamond Ball",
+      "For hands","Plastic Hoop","Glass Hoop","Ankle Healer","All-court Ball",
+      "For legs","Moderate Glass Hoop","For legs","Street Glass Hoop","Ball",
+      "Back Ball","Pro Backball","Glass Hoop","Key Styler","Key Styler"
+    ];
+
+    const bestDiv = document.getElementById('bestProducts');
+    const newDiv = document.getElementById('newProducts');
+    const soldeDiv = document.getElementById('soldeProducts');
+
+    const cart = [];
+    let userBalance = 1500;
+
+    // Best Sellers
+    for(let i=0; i<images.length; i++){
+      const card = document.createElement('div');
+      card.classList.add('cart');
+      card.innerHTML = `
+        <img src="images/${images[i]}" alt="${names[i]}">
+        <div class="desc">${names[i]}</div>
+        <div class="box">
+          <div class="price">$${prices[i]}</div>
+          <button class="order">Order</button>
+        </div>
+      `;
+      card.querySelector('.order').addEventListener('click', () => addToCart(names[i], prices[i]));
+      bestDiv.appendChild(card);
+    }
+
+    // New Arrivals
+    const newItems = [
+      {img:"jersey_new.png", name:"Basket Nets", price:120},
+      {img:"ball_new.png", name:"Basketball Kit", price:90},
+      {img:"shoes_new.png", name:"Training ball", price:150},
+      {img:"kids_set.png", name:"Kids Set", price:60}
+    ];
+    newItems.forEach(p => {
+      const card = document.createElement('div');
+      card.classList.add('cart');
+      card.innerHTML = `
+        <img src="images/${p.img}" alt="${p.name}">
+        <div class="desc">${p.name}</div>
+        <div class="box">
+          <div class="price">$${p.price}</div>
+          <button class="order">Order</button>
+        </div>
+      `;
+      card.querySelector('.order').addEventListener('click', () => addToCart(p.name, p.price));
+      newDiv.appendChild(card);
+    });
+
+    // Solde
+    const soldeItems = [
+      {img:"jersey_sale.png", name:"Children Hoop", price:40},
+      {img:"ball_sale.png", name:"Street Hoop", price:25},
+      {img:"minihoop_sale.png", name:"Mini Hoop", price:70},
+      {img:"short_sale.png", name:"Fror Legs", price:30}
+    ];
+    soldeItems.forEach(p => {
+      const card = document.createElement('div');
+      card.classList.add('cart');
+      card.innerHTML = `
+        <img src="images/${p.img}" alt="${p.name}">
+        <div class="desc">${p.name}</div>
+        <div class="box">
+          <div class="price">$${p.price}</div>
+          <button class="order">Order</button>
+        </div>
+      `;
+      card.querySelector('.order').addEventListener('click', () => addToCart(p.name, p.price));
+      soldeDiv.appendChild(card);
+    });
+
+    function addToCart(name, price){
+      if(userBalance >= price){
+        cart.push({name, price});
+        userBalance -= price;
+        updateCart();
+        showNotif(`${name} purchased for $${price}`);
+        blinkCart();
+      } else {
+        showNotif("❌ Not enough balance", true);
+      }
+    }
+
+    function updateCart(){
+      const cartItems = document.getElementById('cartItems');
+      const cartTotal = document.getElementById('cartTotal');
+      const userBal = document.getElementById('userBalance');
+      cartItems.innerHTML = "";
+      let total = 0;
+      cart.forEach(item => {
+        total += item.price;
+        const li = document.createElement('li');
+        li.textContent = `${item.name} - $${item.price}`;
+        cartItems.appendChild(li);
+      });
+      cartTotal.textContent = total;
+      userBal.textContent = userBalance;
+    }
+
+    function showNotif(msg, error=false){
+      const notif = document.getElementById('notif');
+      notif.textContent = msg;
+      notif.style.background = error ? "red" : "green";
+      notif.style.opacity = 1;
+      setTimeout(()=> notif.style.opacity=0, 2500);
+    }
+
+    // Effet clignotement de l’icône panier
+    function blinkCart(){
+      const cartIcon = document.getElementById('cartIcon');
+      cartIcon.classList.add('blink-cart');
+      setTimeout(()=> cartIcon.classList.remove('blink-cart'), 1500); // 3 fois (0.5s*3)
+    }
+
+    const cartModal = document.getElementById('cartModal');
+    document.getElementById('openCart').addEventListener('click', () => cartModal.style.display='flex');
+    document.getElementById('closeCart').addEventListener('click', () => cartModal.style.display='none');
+
+    document.getElementById('discoverBtn').addEventListener('click', () => {
+      document.getElementById('new').scrollIntoView({behavior:'smooth'});
+    });
+    document.getElementById('linkNew').addEventListener('click', () => {
+      document.getElementById('new').scrollIntoView({behavior:'smooth'});
+    });
+  </script>
+</body>
 </html>
