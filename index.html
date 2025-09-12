@@ -10,6 +10,13 @@
     .navbar h1 { color:white; }
     .navbar ul { list-style:none; display:flex; gap:20px; margin:0; padding:0; }
     .navbar a { color:white; text-decoration:none; font-weight:bold; }
+    .cart-balance {
+      margin-left: 8px;
+      font-weight: bold;
+      color: #f63e4e;
+      font-size: 18px;
+      vertical-align: middle;
+    }
     .content { height:60vh; background:#222 url('images/Bg_banner.png') center/cover no-repeat; display:flex; flex-direction:column; justify-content:center; align-items:center; color:white; text-align:center; }
     .content button { margin-top:20px; padding:12px 25px; background:#e9b960; border:none; border-radius:5px; font-weight:bold; cursor:pointer; }
     .products_section { padding:50px 5%; }
@@ -27,7 +34,6 @@
     #cartContent { background:white; padding:20px; border-radius:10px; width:80%; max-width:600px; }
     #closeCart { float:right; cursor:pointer; }
     #notif { position:fixed; bottom:20px; right:20px; background:green; color:white; padding:12px 20px; border-radius:5px; opacity:0; transition:opacity 0.5s; z-index:200; }
-    /* Animation panier clignotant */
     @keyframes blink {
       0%, 100% { color:white; }
       50% { color:yellow; }
@@ -44,7 +50,13 @@
       <li><a href="#home">Home</a></li>
       <li><a href="#new" id="linkNew">New</a></li>
       <li><a href="#solde">Solde</a></li>
-      <li><a href="#" id="openCart"><span id="cartIcon">🛒</span> Cart</a></li>
+      <li>
+        <a href="#" id="openCart">
+          <span id="cartIcon">🛒</span>
+          <span class="cart-balance" id="cartBalance">1500</span>
+          Cart
+        </a>
+      </li>
     </ul>
   </nav>
 
@@ -188,6 +200,7 @@
       const cartItems = document.getElementById('cartItems');
       const cartTotal = document.getElementById('cartTotal');
       const userBal = document.getElementById('userBalance');
+      const cartBalance = document.getElementById('cartBalance');
       cartItems.innerHTML = "";
       let total = 0;
       cart.forEach(item => {
@@ -198,6 +211,7 @@
       });
       cartTotal.textContent = total;
       userBal.textContent = userBalance;
+      cartBalance.textContent = userBalance; // update balance next to cart icon
     }
 
     function showNotif(msg, error=false){
@@ -208,11 +222,10 @@
       setTimeout(()=> notif.style.opacity=0, 2500);
     }
 
-    // Effet clignotement de l’icône panier
     function blinkCart(){
       const cartIcon = document.getElementById('cartIcon');
       cartIcon.classList.add('blink-cart');
-      setTimeout(()=> cartIcon.classList.remove('blink-cart'), 1500); // 3 fois (0.5s*3)
+      setTimeout(()=> cartIcon.classList.remove('blink-cart'), 1500);
     }
 
     const cartModal = document.getElementById('cartModal');

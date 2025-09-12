@@ -34,6 +34,13 @@ body{
     font-size: 19px;
     font-weight: bold;
 }
+.cart-balance {
+    margin-left: 8px;
+    font-weight: bold;
+    color: #f6ea3e;
+    font-size: 18px;
+    vertical-align: middle;
+}
 .nav .menu li .active{
     border-bottom: 4px solid #ff3d00;
 }
@@ -173,6 +180,6 @@ footer p{
 }
 footer p a{
     text-decoration: none;
-    color: #f63e4e; 
+    color: #e9b21a;
     font-weight: bold;
 }
