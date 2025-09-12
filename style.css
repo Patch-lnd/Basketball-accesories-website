@@ -37,7 +37,7 @@ body{
 .cart-balance {
     margin-left: 8px;
     font-weight: bold;
-    color: #f6ea3e;
+    color: #f63e4e;
     font-size: 18px;
     vertical-align: middle;
 }
@@ -180,6 +180,4 @@ footer p{
 }
 footer p a{
     text-decoration: none;
-    color: #e9b21a;
-    font-weight: bold;
-}
+    color:
